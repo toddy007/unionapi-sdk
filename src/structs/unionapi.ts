@@ -2,7 +2,7 @@ import * as Routes from '../utils/routes';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Method } from '../types/global';
 
-export class UnionAPI {
+export default class UnionAPI {
     public API_KEY: string;
     public headers: object;
 
