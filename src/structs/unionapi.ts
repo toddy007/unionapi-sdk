@@ -13,10 +13,10 @@ export class UnionAPI {
         }
     }
 
-    private makeRequest<T extends AxiosInstance>(url: string, method: Method, config: AxiosRequestConfig<T> = {}, data: unknown = {}) {
+    private makeRequest(url: string, method: Method, config: AxiosRequestConfig = {}, data: any = {}) {
         const isNonDataMethod = [Method.Get, Method.Delete].includes(method);
         
-        return axios[method]<T>(
+        return axios[method](
             url, 
             isNonDataMethod ? config : data,
             isNonDataMethod ? undefined : config,
