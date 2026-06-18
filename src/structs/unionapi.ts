@@ -1,5 +1,5 @@
 import * as Routes from '../utils/routes';
-import axios, { AxiosRequestConfig, AxiosInstance, AxiosHeaders, AxiosHeaderValue } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Method } from '../types/global';
 
 export class UnionAPI {
