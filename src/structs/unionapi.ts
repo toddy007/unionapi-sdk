@@ -1,6 +1,6 @@
-import * as Routes from '../utils/routes';
+import * as Routes from '../utils/routes.js';
 import axios, { AxiosRequestConfig } from 'axios';
-import { Method } from '../types/global';
+import { Method } from '../types/global.js';
 
 export default class UnionAPI {
     public API_KEY: string;
