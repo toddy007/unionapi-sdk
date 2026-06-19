@@ -17,7 +17,7 @@ export default class UnionAPI {
     }
 
     private makeRequest(url: string, method: Method, config: AxiosRequestConfig = {}, data: any = {}) {
-        if (!url || typeof url !== 'string')
+        if ((!url) || typeof url !== 'string')
             throw new Error('Invalid URL provided. Must be a string');
 
         if ((!method) || typeof method !== 'string' || !Object.values(Method).includes(method))
@@ -43,7 +43,7 @@ export default class UnionAPI {
     }
 
     public checkVote(userId: string, maxTime: number = 30) {
-        if (!userId || typeof userId !== 'string' || userId.length < 17)
+        if ((!userId) || typeof userId !== 'string' || userId.length < 17)
             throw new Error('Invalid userId provided. Must be a string and be at least 17 characters long');
 
         if (typeof maxTime !== 'number' || maxTime < 1)
