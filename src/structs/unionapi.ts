@@ -16,7 +16,7 @@ export default class UnionAPI {
         }
     }
 
-    private makeRequest(url: string, method: Method, config: AxiosRequestConfig = {}, data: any = {}) {
+    private async makeRequest(url: string, method: Method, config: AxiosRequestConfig = {}, data: any = {}) {
         if ((!url) || typeof url !== 'string')
             throw new Error('Invalid URL provided. Must be a string');
 
@@ -25,31 +25,35 @@ export default class UnionAPI {
 
         const isNonDataMethod = [Method.Get, Method.Delete].includes(method);
         
-        return axios[method](
+        const response = await axios[method](
             url, 
             isNonDataMethod ? config : data,
             isNonDataMethod ? undefined : config,
         );
+        
+        return response.data;
     }
 
-    public getBotData() {
-        return this.makeRequest(
+    public async getBotData() {
+        const data = await this.makeRequest(
             Routes.DATA_URL, 
             Method.Get, 
             {
                 headers: this.headers
             }
         );
+        
+        return data;
     }
 
-    public checkVote(userId: string, maxTime: number = 30) {
+    public async checkVote(userId: string, maxTime: number = 30) {
         if ((!userId) || typeof userId !== 'string' || userId.length < 17)
             throw new Error('Invalid userId provided. Must be a string and be at least 17 characters long');
 
         if (typeof maxTime !== 'number' || maxTime < 1)
             throw new Error('Invalid maxTime provided. Must be a number and be at least 1');
 
-        return this.makeRequest(
+        const data = await this.makeRequest(
             Routes.CHECK_VOTE_URL,
             Method.Get,
             {
@@ -60,5 +64,7 @@ export default class UnionAPI {
                 },
             },
         );
+        
+        return data;
     }
 }
