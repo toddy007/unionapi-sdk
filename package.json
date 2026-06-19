@@ -1,9 +1,47 @@
 {
+  "name": "unionapi-sdk",
+  "version": "1.0.0",
+  "description": "SDK to help you to communicate with Union Botlist API",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "tsx src/index.ts",
+    "prettier": "npx prettier --write \"**/*.{js,ts}\"",
+    "build": "npx tsc"
+  },
+  "author": {
+    "name": "Jaelson Kaciel",
+    "email": "jaelsonkaciel4@gmail.com",
+    "url": "https://github.com/toddy007"
+  },
+  "keywords": [
+    "union",
+    "sdk",
+    "unionlab",
+    "api"
+  ],
+  "license": "MIT",
   "devDependencies": {
+    "prettier": "^3.8.4",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   },
   "dependencies": {
     "axios": "^1.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toddy007/unionapi-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toddy007/unionapi-sdk.git/issues"
+  },
+  "engines": {
+    "node": ">=21.6.2"
   }
 }
