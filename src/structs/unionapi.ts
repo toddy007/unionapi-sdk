@@ -1,6 +1,7 @@
 import * as Routes from '../utils/routes.js';
 import axios from 'axios';
-import { handleErrors } from '../utils/handleErrors.js'
+import { handleErrors } from '../utils/handleErrors.js';
+import { UnionAPISdkError } from '../utils/unionAPISdkError.js';
 
 export default class UnionAPI {
     public API_KEY: string;
@@ -36,12 +37,12 @@ export default class UnionAPI {
 
     public async checkVote(userId: string, maxTime: number = 30) {
         if ((!userId) || typeof userId !== 'string' || userId.length < 17)
-            throw new Error(
+            throw new UnionAPISdkError(
                 'Invalid userId provided. Must be a string and be at least 17 characters long',
             );
 
         if (typeof maxTime !== 'number' || maxTime < 1)
-            throw new Error(
+            throw new UnionAPISdkError(
                 'Invalid maxTime provided. Must be a number and be at least 1',
             );
 
