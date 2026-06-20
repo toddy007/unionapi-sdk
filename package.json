@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "tsx src/index.ts",
+    "test": "tsx tests/index.ts",
     "prettier": "npx prettier --write \"**/*.{js,ts}\"",
     "build": "npx tsc"
   },
