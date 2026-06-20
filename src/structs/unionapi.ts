@@ -26,8 +26,13 @@ export default class UnionAPI {
 
             return response.data;
         } catch(error) {
-            if (axios.isAxiosError(error))
-                return error.response?.data;
+            if (axios.isAxiosError(error)) {
+                const errorResponse = error.response;
+                const errorData = errorResponse?.data;
+                const retryAfter = errorData?.retryAfter;
+                
+                throw new Error(`${errorResponse?.status ?? '???'}: ${errorData?.error ?? 'Unknown error'} ${retryAfter ? `(retry after: ${retryAfter} seconds)` : ''}`);
+            }
 
             throw error;
         }
@@ -58,8 +63,13 @@ export default class UnionAPI {
 
             return response.data;
         } catch(error) {
-            if (axios.isAxiosError(error))
-                return error.response?.data;
+            if (axios.isAxiosError(error)) {
+                const errorResponse = error.response;
+                const errorData = errorResponse?.data;
+                const retryAfter = errorData?.retryAfter;
+                
+                throw new Error(`${errorResponse?.status ?? '???'}: ${errorData?.error ?? 'Unknown error'} ${retryAfter ? ` (retry after: ${retryAfter} seconds)` : ''}`);
+            }
 
             throw error;
         }
