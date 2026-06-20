@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { UnionAPISdkError } from "./unionAPISdkError";
+import { UnionAPISdkError } from "./unionAPISdkError.js";
 
 export function handleErrors(error: AxiosError) {
     const errorResponse = error.response;
