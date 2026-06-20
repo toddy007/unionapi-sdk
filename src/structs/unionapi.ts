@@ -18,12 +18,19 @@ export default class UnionAPI {
     }
 
     public async getBotData() {
-        const response = await axios.get(
-            Routes.DATA_URL, 
-            { headers: this.headers } 
-        );
+        try {
+            const response = await axios.get(
+                Routes.DATA_URL, 
+                { headers: this.headers } 
+            );
 
-        return response.data;
+            return response.data;
+        } catch(error) {
+            if (axios.isAxiosError(error))
+                return error.response?.data;
+
+            throw error;
+        }
     }
 
     public async checkVote(userId: string, maxTime: number = 30) {
@@ -37,17 +44,24 @@ export default class UnionAPI {
                 'Invalid maxTime provided. Must be a number and be at least 1',
             );
 
-        const response = await axios.get(
-            Routes.CHECK_VOTE_URL, 
-            {
-                headers: this.headers,
-                params: {
-                    userId,
-                    maxTime,
+        try {
+            const response = await axios.get(
+                Routes.CHECK_VOTE_URL, 
+                {
+                    headers: this.headers,
+                    params: {
+                        userId,
+                        maxTime,
+                    },
                 },
-            },
-        );
+            );
 
-        return response.data;
+            return response.data;
+        } catch(error) {
+            if (axios.isAxiosError(error))
+                return error.response?.data;
+
+            throw error;
+        }
     }
 }
