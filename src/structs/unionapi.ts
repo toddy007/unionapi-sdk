@@ -35,15 +35,10 @@ export default class UnionAPI {
         }
     }
 
-    public async checkVote(userId: string, maxTime: number = 30) {
+    public async checkVote(userId: string) {
         if ((!userId) || typeof userId !== 'string' || userId.length < 17)
             throw new UnionAPISdkError(
                 'Invalid userId provided. Must be a string and be at least 17 characters long',
-            );
-
-        if (typeof maxTime !== 'number' || maxTime < 1)
-            throw new UnionAPISdkError(
-                'Invalid maxTime provided. Must be a number and be at least 1',
             );
 
         try {
@@ -53,7 +48,6 @@ export default class UnionAPI {
                     headers: this.headers,
                     params: {
                         userId,
-                        maxTime,
                     },
                 },
             );
